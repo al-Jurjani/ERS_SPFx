@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "expense-form-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/expenseForm/ExpenseFormWebPart.js",
+          "manifest": "./src/webparts/expenseForm/ExpenseFormWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ExpenseFormWebPartStrings": "lib/webparts/expenseForm/loc/{locale}.js"
+  }
+}

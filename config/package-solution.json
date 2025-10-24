@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "expense-reimbursement-app-client-side-solution",
+    "id": "dc460115-d44b-475e-972a-b1ecaafcd2da",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "expense-reimbursement-app description"
+      },
+      "longDescription": {
+        "default": "expense-reimbursement-app description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "expense-reimbursement-app Feature",
+        "description": "The feature that activates elements of the expense-reimbursement-app solution.",
+        "id": "09f5fb7f-f563-4cd3-9f26-acf0ca05c968",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/expense-reimbursement-app.sppkg"
+  }
+}
