@@ -1,13 +1,115 @@
-@import '~@fluentui/react/dist/sass/References.scss';
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
 .expenseForm {
-  overflow: hidden;
-  padding: 1em;
-  color: "[theme:bodyText, default: #323130]";
-  color: var(--bodyText);
-  &.teams {
-    font-family: $ms-font-family-fallbacks;
+  padding: 20px;
+  background-color: $ms-color-neutralLighter;
+  min-height: 100vh;
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: $ms-color-white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+
+    .header {
+      margin-bottom: 30px;
+      border-bottom: 2px solid $ms-color-themePrimary;
+      padding-bottom: 15px;
+
+      h2 {
+        margin: 0 0 10px 0;
+        color: $ms-color-themePrimary;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0;
+        color: $ms-color-neutralSecondary;
+        font-size: 14px;
+      }
+    }
+
+    .formSection {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .fileUpload {
+        margin-top: 10px;
+
+        .fileLabel {
+          display: block;
+          font-size: 14px;
+          font-weight: 600;
+          color: $ms-color-neutralPrimary;
+          margin-bottom: 8px;
+
+          .required {
+            color: $ms-color-error;
+            font-weight: 600;
+          }
+        }
+
+        .fileInput {
+          display: block;
+          width: 100%;
+          padding: 10px;
+          border: 1px solid $ms-color-neutralTertiary;
+          border-radius: 4px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: border-color 0.2s;
+
+          &:hover {
+            border-color: $ms-color-themePrimary;
+          }
+
+          &:disabled {
+            background-color: $ms-color-neutralLighter;
+            cursor: not-allowed;
+          }
+        }
+
+        .fileName {
+          margin-top: 8px;
+          padding: 8px 12px;
+          background-color: $ms-color-themeLight;
+          border-radius: 4px;
+          font-size: 13px;
+          color: $ms-color-themeDark;
+        }
+      }
+
+      .buttonSection {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 20px;
+        border-top: 1px solid $ms-color-neutralLight;
+      }
+    }
   }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .container {
+      padding: 20px;
+
+      .header h2 {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+// Legacy styles (kept for compatibility with old template)
+.teams {
+  font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .welcome {
@@ -23,12 +125,10 @@
   a {
     text-decoration: none;
     color: "[theme:link, default:#03787c]";
-    color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
 
     &:hover {
       text-decoration: underline;
-      color: "[theme:linkHovered, default: #014446]";
-      color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
+      color: "[theme:linkHovered, default:#014446]";
     }
   }
 }
