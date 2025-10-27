@@ -1,27 +1,15 @@
-/**
- * Configuration file for the application.
- * Once SharePoint set up, update these values.
- */
-
+// Configuration file for the application.
 import { IAppConfiguration } from './types';
 
-/**
- * Application Configuration
- * 
- * TODO: Update these values once SharePoint site is ready!
- * - siteUrl: The SharePoint site URL
- * - excelFilePath: Path to the ExpenseData.xlsx file
- * - receiptsFolderPath: Path to the Receipts folder
- */
+// Application Configuration
 export const appConfig: IAppConfiguration = {
-  // Example: 'https://yourschool.sharepoint.com/sites/ExpenseApp'
-  siteUrl: 'https://placeholder.sharepoint.com/sites/ExpenseApp',
+  siteUrl: 'https://subataworld.sharepoint.com/sites/ers',
   
   // Example: '/sites/ExpenseApp/Shared Documents/ExpenseData.xlsx'
-  excelFilePath: '/sites/ExpenseApp/Shared Documents/ExpenseData.xlsx',
+  excelFilePath: '/sites/ers/Shared%20Documents/ExpenseData.xlsx',
   
   // Example: '/sites/ExpenseApp/Shared Documents/Receipts'
-  receiptsFolderPath: '/sites/ExpenseApp/Shared Documents/Receipts',
+  receiptsFolderPath: '/sites/ers/Shared%20Documents/Receipts',
   
   // This should match the table name in Excel
   excelTableName: 'ExpenseTable'

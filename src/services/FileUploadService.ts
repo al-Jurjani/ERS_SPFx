@@ -22,19 +22,24 @@ export class FileUploadService {
   // function/method: to upload the reciept to SharePoint
   // returns the url of where the file was uploaded
   public async uploadReceipt(file: File, expenseId: string): Promise<string> {
-    console.log('📤 Uploading receipt file...');
-    console.log('File name:', file.name);
-    console.log('File size:', file.size, 'bytes');
-    console.log('Expense ID:', expenseId);
+  console.log('📤 Uploading receipt file...');
+  console.log('File name:', file.name);
+  console.log('File size:', file.size, 'bytes');
+  console.log('Expense ID:', expenseId);
 
-    // MOCK MODE: Just simulate an upload
-    if (this.useMockData) {
-      return await this.mockUploadReceipt(file, expenseId);
-    }
-
-    // REAL MODE: This will be implemented later with Microsoft Graph API
-    // return await this.realUploadReceipt(file, expenseId);
+  // MOCK MODE: Just simulate an upload
+  if (this.useMockData) {
+    return await this.mockUploadReceipt(file, expenseId);
   }
+
+  // REAL MODE: This will be implemented later with Microsoft Graph API
+  try {
+    return await this.realUploadReceipt(file, expenseId);
+  } catch (error) {
+    console.error('Real upload failed:', error);
+    throw error;
+  }
+}
 
   ///
   ///
@@ -64,41 +69,8 @@ export class FileUploadService {
   // uploadReciept will call this method, once this is implemented
   // TODO: Implement this once SharePoint is set up
   private async realUploadReceipt(file: File, expenseId: string): Promise<string> {
-    console.log('🚀 REAL: Uploading file to SharePoint...');
-
-    try {
-      // TODO: Get access token for Microsoft Graph
-      // const accessToken = await this.getAccessToken();
-
-      // TODO: Generate unique file name
-      const fileExtension = file.name.split('.').pop();
-      const fileName = `receipt_${expenseId}_${Date.now()}.${fileExtension}`;
-
-      // TODO: Upload file using Microsoft Graph API
-      // const uploadUrl = `https://graph.microsoft.com/v1.0/sites/{site-id}/drive/root:${this.config.receiptsFolderPath}/${fileName}:/content`;
-      
-      // TODO: Make the API call
-      // const response = await fetch(uploadUrl, {
-      //   method: 'PUT',
-      //   headers: {
-      //     'Authorization': `Bearer ${accessToken}`,
-      //     'Content-Type': file.type
-      //   },
-      //   body: file
-      // });
-
-      // TODO: Get the file URL from response
-      // const result = await response.json();
-      // return result.webUrl;
-
-      // For now, throw an error since this isn't implemented
-      throw new Error('Real file upload not implemented yet. Waiting for SharePoint configuration.');
-
-    } catch (error) {
-      console.error('❌ Error uploading file:', error);
-      throw new Error(`Failed to upload receipt: ${error.message}`);
-    }
-  }
+  throw new Error('Real file upload not implemented yet. Waiting for SharePoint configuration.');
+}
 
   ///
   ///
@@ -129,7 +101,7 @@ export class FileUploadService {
 
     // Check file type (only images and PDFs)
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf'];
-    if (!allowedTypes.includes(file.type)) {
+if (allowedTypes.indexOf(file.type) === -1) {
       throw new Error('Invalid file type. Please upload an image (JPG, PNG, GIF) or PDF.');
     }
 

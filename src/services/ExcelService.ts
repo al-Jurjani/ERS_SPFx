@@ -17,7 +17,7 @@
  * 5.) genereteTestData - private, just for testing
  */
 
-import { IExpenseData, ISubmissionResult, IAppConfiguration, IExcelRow } from './types';
+import { IExpenseData, ISubmissionResult, IAppConfiguration } from './types';
 
 export class ExcelService {
   private config: IAppConfiguration;
@@ -27,14 +27,15 @@ export class ExcelService {
   private mockExpenses: IExpenseData[] = [];
 
   // Constructor
-  constructor(config: IAppConfiguration, useMockData: boolean = true) {
-    this.config = config;
+  constructor(configParam: IAppConfiguration, useMockData: boolean = true) {
+    this.config = configParam;
     this.useMockData = useMockData;
 
     console.log('📊 ExcelService initialized');
     console.log('Mock mode:', useMockData ? 'ON (simulated Excel)' : 'OFF (real Excel)');
-    console.log('Excel file path:', config.excelFilePath);
-    console.log('Table name:', config.excelTableName);
+    console.log('Excel file path:', configParam.excelFilePath);
+    console.log('Table name:', configParam.excelTableName);
+    console.log('config: ', this.config)
 
     // Initialize with some mock data for testing
     if (useMockData) {
@@ -58,7 +59,7 @@ export class ExcelService {
       return {
         success: false,
         message: 'Failed to submit expense',
-        error: error.message
+        error: "an error occured"
       };
     }
   }
@@ -97,6 +98,7 @@ export class ExcelService {
 
       // TODO: Prepare row data in Excel format
       const rowData = this.prepareExcelRow(expenseData);
+      console.log("Row Data: ", rowData)
 
       // TODO: Add row to Excel table using Microsoft Graph API
       // const graphUrl = `https://graph.microsoft.com/v1.0/sites/{site-id}/drive/root:${this.config.excelFilePath}:/workbook/tables/${this.config.excelTableName}/rows`;
@@ -129,17 +131,17 @@ export class ExcelService {
 
   // Convert our expense data to Excel row format
   private prepareExcelRow(expense: IExpenseData): any[] {
-    return [
-      expense.id,
-      expense.employeeName,
-      expense.employeeEmail,
-      expense.expenseDate.toISOString().split('T')[0], // Convert to YYYY-MM-DD
-      expense.amount,
-      expense.category,
-      expense.receiptURL,
-      expense.status
-    ];
-  }
+  return [
+    expense.id,
+    expense.employeeName,
+    expense.employeeEmail,
+    expense.expenseDate.toISOString().split('T')[0],
+    expense.amount,
+    expense.category,
+    expense.receiptURL,
+    expense.status
+  ];
+}
 
   // 2.) gets all expenses and returns Array of all expenses
   public async getAllExpenses(): Promise<IExpenseData[]> {
@@ -216,7 +218,7 @@ export class ExcelService {
     await this.simulateDelay(500, 1000);
 
     // Find and update the expense
-    const expense = this.mockExpenses.find(e => e.id === expenseId);
+    const expense = this.mockExpenses.find((e: IExpenseData) => e.id === expenseId);
     if (expense) {
       expense.status = newStatus;
       console.log('✅ MOCK: Status updated successfully!');

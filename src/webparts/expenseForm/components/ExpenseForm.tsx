@@ -160,7 +160,7 @@ export default class ExpenseForm extends React.Component<IExpenseFormProps, IExp
 
   private handleSubmit = async (): Promise<void> => {
     console.log('🚀 Submit button clicked!');
-    console.log('='.repeat(50));
+    console.log('==================================================');
 
     // Clear previous messages
     this.setState({ submitMessage: '' });
@@ -231,7 +231,7 @@ export default class ExpenseForm extends React.Component<IExpenseFormProps, IExp
         console.log('Amount: $' + amount);
         console.log('Category:', category);
         console.log('Status: Pending');
-        console.log('='.repeat(50));
+        console.log('==================================================');
 
         // Reset form after 3 seconds
         setTimeout(() => {
@@ -245,7 +245,7 @@ export default class ExpenseForm extends React.Component<IExpenseFormProps, IExp
     } catch (error) {
       console.error('❌ Error submitting expense:', error);
       this.setState({
-        submitMessage: `Error: ${error.message}`,
+        submitMessage: `Error occured`,
         submitMessageType: MessageBarType.error,
         isSubmitting: false
       });
@@ -370,13 +370,14 @@ export default class ExpenseForm extends React.Component<IExpenseFormProps, IExp
               <label className={styles.fileLabel}>
                 Receipt Upload <span className={styles.required}>*</span>
               </label>
-              <input
+              <input 
                 ref={this.fileInputRef}
                 type="file"
                 accept="image/*,.pdf"
                 onChange={this.handleFileChange}
                 disabled={isSubmitting}
                 className={styles.fileInput}
+                aria-label="Upload receipt file"
               />
               {receiptFile && (
                 <div className={styles.fileName}>

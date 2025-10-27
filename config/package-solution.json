@@ -4,6 +4,16 @@
     "name": "expense-reimbursement-app-client-side-solution",
     "id": "dc460115-d44b-475e-972a-b1ecaafcd2da",
     "version": "1.0.0.0",
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Files.ReadWrite.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Sites.ReadWrite.All"
+      }
+    ],
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
